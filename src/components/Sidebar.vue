@@ -14,10 +14,7 @@
                     :class="route.path.includes(item) ? 'bg-purple-1' : ''"
                     @click="handleItemClick(item)"
                 >
-                    <q-item-section
-                        >{{ item }}
-                        {{ route.path.includes(item) }}</q-item-section
-                    >
+                    <q-item-section>{{ item }} </q-item-section>
                 </q-item>
             </q-list>
         </q-card-section>
