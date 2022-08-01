@@ -27,11 +27,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
-import Sidebar from '@/components/Sidebar.vue';
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from '@/components/Sidebar.vue'
 
-const route = useRoute();
+const route = useRoute()
 
-const leftDrawerOpen = ref(false);
+const leftDrawerOpen = ref(false)
 </script>
