@@ -8,15 +8,20 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "vite-plugin-eslint": "^1.7.0",
+        "@quasar/extras": "^1.15.0",
+        "quasar": "^2.7.6",
         "vue": "^3.2.37"
     },
     "devDependencies": {
+        "vite-plugin-eslint": "^1.7.0",
+        "@quasar/vite-plugin": "^1.1.1",
         "@vitejs/plugin-vue": "^3.0.0",
         "eslint": "^8.21.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-vue": "^9.3.0",
         "prettier": "^2.7.1",
-        "vite": "^3.0.0"
+        "sass": "1.32.12",
+        "vite": "^3.0.0",
+        "vue-router": "^4.1.3"
     }
 }

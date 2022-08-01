@@ -7,5 +7,26 @@
         "plugin:vue/vue3-recommended",
         "prettier"
     ],
-    "rules": {}
+    "rules": {
+        "vue/multi-word-component-names": [
+            "warn",
+            {
+                "ignores": [
+                    "Cabin",
+                    "Cargo",
+                    "Login",
+                    "Register",
+                    "Dashboard",
+                    "Sidebar",
+                    "Header",
+                    "Footer",
+                    "Settings",
+                    "Airline",
+                    "Inventory",
+                    "Pricing",
+                    "Branding"
+                ]
+            }
+        ]
+    }
 }

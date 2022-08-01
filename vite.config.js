@@ -1,4 +1,7 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
+import eslintPlugin from 'vite-plugin-eslint';
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
@@ -22,8 +25,14 @@ export default defineConfig({
         vue({
             template: { transformAssetUrls },
         }),
+        eslintPlugin(),
         quasar({
-            sassVariables: "src/quasar-variables.sass",
+            sassVariables: 'src/style/quasar-variables.sass'
         }),
     ],
+    resolve: {
+        alias: {
+            "@": resolve(__dirname, "./src"),
+        },
+    },
 })
