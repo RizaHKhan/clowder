@@ -11,9 +11,13 @@
                     v-ripple
                     clickable
                     class="rounded-borders"
+                    :class="route.path.includes(item) ? 'bg-purple-1' : ''"
                     @click="handleItemClick(item)"
                 >
-                    <q-item-section>{{ item }}</q-item-section>
+                    <q-item-section
+                        >{{ item }}
+                        {{ route.path.includes(item) }}</q-item-section
+                    >
                 </q-item>
             </q-list>
         </q-card-section>
@@ -21,11 +25,14 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import AVLogo from '@/molecules/AVLogo.vue'
 import items from '../components.js'
 
 const router = useRouter()
+const route = useRoute()
+
+console.log(route.params.component)
 
 const handleItemClick = (target) => {
     router.push(`/${target}`)
