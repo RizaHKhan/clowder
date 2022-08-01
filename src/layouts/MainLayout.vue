@@ -14,7 +14,9 @@
         <q-page-container>
             <q-page padding>
                 <p>{{ route.params.component }}</p>
-                <router-view />
+                <div class="row column q-gutter-sm">
+                    <router-view />
+                </div>
             </q-page>
         </q-page-container>
 

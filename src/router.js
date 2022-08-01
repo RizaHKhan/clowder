@@ -1,28 +1,24 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import MainLayout from '@/layouts/MainLayout.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import items from './components'
+import MainLayout from '@/layouts/MainLayout.vue'
 
 const routes = [
     {
         path: '/',
         component: MainLayout,
         children: [
-            {
-                path: 'AVButton',
-                name: 'AVButton',
-                component: () => import('@/views/AVButton.vue'),
-            },
-            {
-                path: 'AVInput',
-                name: 'AVInput',
-                component: () => import('@/views/AVInput.vue'),
-            },
+            ...items.map((item) => ({
+                path: item,
+                name: item,
+                component: () => import(`@/views/${item}.vue`),
+            })),
         ],
     },
-];
+]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
-});
+})
 
-export default router;
+export default router

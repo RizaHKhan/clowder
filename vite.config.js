@@ -27,7 +27,7 @@ export default defineConfig({
         }),
         eslintPlugin(),
         quasar({
-            sassVariables: 'src/style/quasar-variables.sass',
+            sassVariables: 'src/style/_quasar-variables.sass',
         }),
     ],
     resolve: {
