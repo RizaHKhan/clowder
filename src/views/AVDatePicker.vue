@@ -1,7 +1,11 @@
 <template>
-    <AVDatePicker />
+    <AVDatePicker v-model="date" />
+    <p>{{ date }}</p>
 </template>
 
 <script setup>
-import AVDatePicker from '@/molecules/AVDate.vue'
+import { ref } from 'vue'
+import AVDatePicker from '@/molecules/AVDatePicker.vue'
+
+const date = ref('')
 </script>

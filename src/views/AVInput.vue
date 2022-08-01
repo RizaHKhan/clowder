@@ -1,6 +1,7 @@
 <template>
     <div class="row column q-gutter-sm">
-        <AVInput label="My Label" />
+        <p>{{ input }}</p>
+        <AVInput label="My Label" v-model="input" />
         <AVInput label="After Icon">
             <template #after>
                 <AVButton icon="add" outline color="purple" />
@@ -23,6 +24,9 @@
 </template>
 
 <script setup>
-import AVInput from '@/atoms/AVInput.vue';
-import AVButton from '@/atoms/AVButton.vue';
+import { ref } from 'vue'
+import AVInput from '@/atoms/AVInput.vue'
+import AVButton from '@/atoms/AVButton.vue'
+
+const input = ref('')
 </script>
