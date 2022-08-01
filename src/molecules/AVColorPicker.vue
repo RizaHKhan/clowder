@@ -1,7 +1,7 @@
 <template>
     <AVInput v-model="color">
         <template #append>
-            <q-icon
+            <AVIcon
                 name="colorize"
                 class="cursor-pointer"
                 :style="{
@@ -15,26 +15,28 @@
                 >
                     <q-color v-model="color" />
                 </q-popup-proxy>
-            </q-icon>
+            </AVIcon>
         </template>
     </AVInput>
 </template>
 
 <script setup>
-import AVInput from '@/atoms/AVInput.vue';
-import { computed, defineProps, defineEmits } from 'vue';
+import AVInput from '@/atoms/AVInput.vue'
+import AVIcon from '@/atoms/AVIcon.vue'
+
+import { computed, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
     modelValue: {
         type: String,
         default: '',
     },
-});
+})
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue'])
 
 const color = computed({
     get: () => props.modelValue,
     set: (val) => emit('update:modelValue', val),
-});
+})
 </script>
