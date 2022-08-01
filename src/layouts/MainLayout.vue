@@ -13,7 +13,7 @@
 
         <q-page-container>
             <q-page padding>
-                <p class="text-h6">{{ route.meta.title }}</p>
+                {{ route.params.component }}
                 <router-view />
             </q-page>
         </q-page-container>
@@ -25,9 +25,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import Sidebar from "@/components/Sidebar.vue";
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import Sidebar from '@/components/Sidebar.vue';
 
 const route = useRoute();
 

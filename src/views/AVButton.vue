@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import AVButton from "@/atoms/AVButton.vue";
+import AVButton from '@/atoms/AVButton.vue';
 </script>

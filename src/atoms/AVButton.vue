@@ -1,3 +1,3 @@
 <template>
-    <button>Sup</button>
+    <q-btn class="primary">I am a button </q-btn>
 </template>

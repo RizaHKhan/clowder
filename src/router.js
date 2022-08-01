@@ -1,14 +1,15 @@
-import { createRouter, createWebHistory } from "vue-router";
-import MainLayout from "@/layouts/MainLayout.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import MainLayout from '@/layouts/MainLayout.vue';
 
 const routes = [
     {
-        path: "/",
+        path: '/',
         component: MainLayout,
         children: [
             {
-                path: ":component",
-                component: () => import("@/views/AVButton.vue"),
+                path: ':component',
+                name: 'Component',
+                component: () => import('@/views/Main.vue'),
             },
         ],
     },
