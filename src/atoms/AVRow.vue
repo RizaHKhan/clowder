@@ -1,20 +1,78 @@
 <template>
-    <div ref="grid" class="grid" :style="style">
+    <div :style="styles" :class="[...classes]">
         <slot></slot>
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import useResponsiveness from '@/composables/useResponsiveness';
+import { computed, useSlots } from 'vue'
+import useResponsiveness from '@/composables/useResponsiveness'
 
-const { direction } = useResponsiveness();
+const { direction } = useResponsiveness()
 
-const grid = ref(null);
-const style = computed(() => {
-    return {
-        'grid-auto-flow': direction.value,
-        'grid-gap': '0.5rem',
-    };
-});
+const props = defineProps({
+    flex: {
+        type: Boolean,
+        default: false,
+    },
+    grid: {
+        type: Boolean,
+        default: false,
+    },
+    columns: {
+        type: String,
+        default: '',
+    },
+    justify: {
+        type: String,
+        default: '',
+        validator: (val) =>
+            ['start', 'end', 'center', 'between', 'around', 'evenly'].includes(
+                val
+            ),
+    },
+    direction: {
+        type: String,
+        default: '',
+    },
+    gap: {
+        type: String,
+        default: '0.5rem',
+    },
+})
+
+const styles = computed(() => {
+    const styles = {}
+
+    if (props.grid) {
+        styles['display'] = 'grid'
+    } else if (props.flex) {
+        styles['display'] = 'flex'
+    }
+
+    if (!props.columns && props.grid) {
+        const slots = useSlots()
+        const numOfElements = slots.default().length
+
+        styles['grid-template-columns'] = `repeat(${numOfElements}, 1fr)`
+    } else if (props.columns && props.grid) {
+        styles['grid-template-columns'] = props.columns
+    } else {
+        styles['grid-auto-flow'] = direction.value
+    }
+
+    styles['grid-gap'] = props.gap
+
+    return styles
+})
+
+const classes = computed(() => {
+    const classes = []
+
+    if (props.justify) {
+        classes.push(`justify-${props.justify}`)
+    }
+
+    return classes
+})
 </script>
