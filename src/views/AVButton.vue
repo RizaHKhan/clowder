@@ -1,6 +1,8 @@
 <template>
-    <div class="row">
-        <AVButton />
+    <div class="row column q-gutter-sm">
+        <AVButton>Click Me</AVButton>
+        <AVButton label="Foobar" />
+        <AVButton outline label="Foobar" color="purple" />
     </div>
 </template>
 

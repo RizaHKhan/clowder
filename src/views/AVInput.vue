@@ -1,5 +1,7 @@
 <template>
-    <div class="row">Inputs go here</div>
+    <div class="row"><AVInput /></div>
 </template>
 
-<script setup></script>
+<script setup>
+import AVInput from '@/atoms/AVInput.vue';
+</script>

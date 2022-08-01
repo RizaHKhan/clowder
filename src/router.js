@@ -7,9 +7,14 @@ const routes = [
         component: MainLayout,
         children: [
             {
-                path: ':component',
-                name: 'Component',
-                component: () => import('@/views/Main.vue'),
+                path: 'AVButton',
+                name: 'AVButton',
+                component: () => import('@/views/AVButton.vue'),
+            },
+            {
+                path: 'AVInput',
+                name: 'AVInput',
+                component: () => import('@/views/AVInput.vue'),
             },
         ],
     },

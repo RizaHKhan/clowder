@@ -1,9 +1,7 @@
 <template>
-    <q-btn unelevated color="primary" class="q-pa-md">
+    <q-select>
         <template v-for="(_, slot) in $slots" #[slot]="scope">
             <slot :name="slot" v-bind="scope || {}" />
         </template>
-    </q-btn>
+    </q-select>
 </template>
-
-<script setup></script>

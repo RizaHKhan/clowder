@@ -13,7 +13,7 @@
 
         <q-page-container>
             <q-page padding>
-                {{ route.params.component }}
+                <p>{{ route.params.component }}</p>
                 <router-view />
             </q-page>
         </q-page-container>
