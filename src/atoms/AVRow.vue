@@ -19,6 +19,14 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    column: {
+        type: Boolean,
+        default: false,
+    },
+    row: {
+        type: Boolean,
+        default: false,
+    },
     columns: {
         type: String,
         default: '',
@@ -48,6 +56,12 @@ const styles = computed(() => {
         styles['display'] = 'grid'
     } else if (props.flex) {
         styles['display'] = 'flex'
+
+        if (props.column) {
+            styles['flex-direction'] = 'column'
+        } else {
+            styles['flex-direction'] = 'row'
+        }
     }
 
     if (!props.columns && props.grid) {

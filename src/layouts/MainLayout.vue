@@ -21,7 +21,7 @@
         </q-page-container>
 
         <q-footer class="bg-white text-grey q-px-md">
-            Footer goes here
+            <AVFooter />
         </q-footer>
     </q-layout>
 </template>
@@ -29,6 +29,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import AVFooter from '@/molecules/AVFooter.vue'
 import Sidebar from '@/components/Sidebar.vue'
 
 const route = useRoute()
