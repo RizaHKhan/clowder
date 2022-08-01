@@ -75,4 +75,7 @@ const classes = computed(() => {
 
     return classes
 })
+
+// TODO: add responsiveness
+// TODO: add a Flow prop which over rides direction
 </script>

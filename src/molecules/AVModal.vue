@@ -1,7 +1,7 @@
 <template>
     <AVButton v-bind="$attrs" @click="modal = true" />
 
-    <q-dialog v-model="modal">
+    <q-dialog v-model="modal" :persistent="persistent">
         <q-card :style="[size]">
             <q-card-section class="q-pb-none">
                 <p class="text-h6">{{ title }}</p>
@@ -17,10 +17,10 @@
 </template>
 
 <script setup>
-import AVButton from '@/atoms/AVButton.vue';
-import { ref, computed, defineProps } from 'vue';
+import AVButton from '@/atoms/AVButton.vue'
+import { ref, computed, defineProps } from 'vue'
 
-const modal = ref(false);
+const modal = ref(false)
 const props = defineProps({
     title: {
         type: String,
@@ -30,35 +30,39 @@ const props = defineProps({
         type: String,
         default: 'medium',
         validator(val) {
-            return ['small', 'medium', 'large'].includes(val);
+            return ['small', 'medium', 'large'].includes(val)
         },
     },
-});
+    persistent: {
+        type: Boolean,
+        default: false,
+    },
+})
 
 const size = computed(() => {
-    let style = {};
+    let style = {}
     switch (props.size) {
         case 'small':
-            style = { width: '300px' };
-            break;
+            style = { width: '300px' }
+            break
         case 'medium':
-            style = { width: '700px', 'max-width': '80vw' };
-            break;
+            style = { width: '700px', 'max-width': '80vw' }
+            break
         case 'large':
-            style = { 'min-width': '95vw' };
-            break;
+            style = { 'min-width': '95vw' }
+            break
     }
 
-    return style;
-});
+    return style
+})
 
 const closeModal = () => {
-    modal.value = false;
-};
+    modal.value = false
+}
 </script>
 
 <script>
 export default {
     inheritAttrs: false,
-};
+}
 </script>
