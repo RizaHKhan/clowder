@@ -1,5 +1,5 @@
 <template>
-    <div :style="styles" :class="[...classes]">
+    <div :style="styles">
         <slot></slot>
     </div>
 </template>
@@ -7,14 +7,9 @@
 <script setup>
 import { computed, useSlots } from 'vue'
 import useResponsiveness from '@/composables/useResponsiveness'
-
-const { direction } = useResponsiveness()
+const { breakpoint } = useResponsiveness()
 
 const props = defineProps({
-    flex: {
-        type: Boolean,
-        default: false,
-    },
     grid: {
         type: Boolean,
         default: false,
@@ -24,6 +19,14 @@ const props = defineProps({
         default: false,
     },
     columns: {
+        type: String,
+        default: '',
+    },
+    rows: {
+        type: String,
+        default: '',
+    },
+    flow: {
         type: String,
         default: '',
     },
@@ -38,11 +41,8 @@ const props = defineProps({
                 'space-between',
                 'space-around',
                 'space-evenly',
+                ''
             ].includes(val),
-    },
-    direction: {
-        type: String,
-        default: '',
     },
     gap: {
         type: String,
@@ -56,23 +56,37 @@ const styles = computed(() => {
     if (props.grid) {
         styles['display'] = 'grid'
 
-        if (!props.columns && props.grid) {
-            const slots = useSlots()
-            const numOfElements = slots.default().length
-
-            styles['grid-template-columns'] = `repeat(${numOfElements}, 1fr)`
-        } else if (props.columns && props.grid) {
-            styles['grid-template-columns'] = props.columns
+        if (props.flow) {
+            styles['grid-auto-flow'] = props.flow
+        } else if (['xs', 'sm'].includes(breakpoint.value)) {
+            styles['grid-auto-flow'] = 'row'
         } else {
-            styles['grid-auto-flow'] = direction.value
+            if (props.columns) {
+                styles['grid-template-columns'] = props.columns
+            } else {
+                const slots = useSlots()
+                const numOfElements = slots.default().length
+
+                styles['grid-template-columns'] = `repeat(${numOfElements}, 1fr)`
+            } 
+
+            if (props.rows) {
+              styles['grid-template-rows'] = props.rows
+            }
         }
-    } else if (props.flex) {
+    } else {
         styles['display'] = 'flex'
 
-        if (props.column) {
-            styles['flex-direction'] = 'column'
+        if (props.flow) {
+            styles['flex-flow'] = props.flow
+        } else if (['xs', 'sm'].includes(breakpoint.value)) {
+            styles['flex-flow'] = 'column'
         } else {
-            styles['flex-direction'] = 'row'
+            if (props.column) {
+                styles['flex-direction'] = 'column'
+            } else {
+                styles['flex-direction'] = 'row'
+            }
         }
     }
 
@@ -84,17 +98,4 @@ const styles = computed(() => {
 
     return styles
 })
-
-const classes = computed(() => {
-    const classes = []
-
-    if (props.justify) {
-        classes.push(`justify-${props.justify}`)
-    }
-
-    return classes
-})
-
-// TODO: add responsiveness
-// TODO: add a Flow prop which over rides direction
 </script>
