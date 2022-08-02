@@ -21,10 +21,9 @@
 </template>
 
 <script setup>
+import { computed, defineProps, defineEmits } from 'vue'
 import AVInput from '@/atoms/AVInput.vue'
 import AVIcon from '@/atoms/AVIcon.vue'
-
-import { computed, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
     modelValue: {

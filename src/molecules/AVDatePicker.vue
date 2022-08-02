@@ -1,5 +1,5 @@
 <template>
-    <AVInput v-model="date" mask="date">
+    <AVInput v-model="date">
         <template #append>
             <AVIcon name="event" class="cursor-pointer">
                 <q-popup-proxy
@@ -30,7 +30,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const date = computed({
-    get: () => props.date,
+    get: () => props.modelValue,
     set: (val) => emit('update:modelValue', val),
 })
 </script>

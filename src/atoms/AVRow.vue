@@ -23,10 +23,6 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    row: {
-        type: Boolean,
-        default: false,
-    },
     columns: {
         type: String,
         default: '',
@@ -35,9 +31,14 @@ const props = defineProps({
         type: String,
         default: '',
         validator: (val) =>
-            ['start', 'end', 'center', 'between', 'around', 'evenly'].includes(
-                val
-            ),
+            [
+                'flex-start',
+                'flex-end',
+                'center',
+                'space-between',
+                'space-around',
+                'space-evenly',
+            ].includes(val),
     },
     direction: {
         type: String,
@@ -54,6 +55,17 @@ const styles = computed(() => {
 
     if (props.grid) {
         styles['display'] = 'grid'
+
+        if (!props.columns && props.grid) {
+            const slots = useSlots()
+            const numOfElements = slots.default().length
+
+            styles['grid-template-columns'] = `repeat(${numOfElements}, 1fr)`
+        } else if (props.columns && props.grid) {
+            styles['grid-template-columns'] = props.columns
+        } else {
+            styles['grid-auto-flow'] = direction.value
+        }
     } else if (props.flex) {
         styles['display'] = 'flex'
 
@@ -64,18 +76,11 @@ const styles = computed(() => {
         }
     }
 
-    if (!props.columns && props.grid) {
-        const slots = useSlots()
-        const numOfElements = slots.default().length
-
-        styles['grid-template-columns'] = `repeat(${numOfElements}, 1fr)`
-    } else if (props.columns && props.grid) {
-        styles['grid-template-columns'] = props.columns
-    } else {
-        styles['grid-auto-flow'] = direction.value
-    }
-
     styles['grid-gap'] = props.gap
+
+    if (props.justify) {
+        styles['justify-content'] = props.justify
+    }
 
     return styles
 })
